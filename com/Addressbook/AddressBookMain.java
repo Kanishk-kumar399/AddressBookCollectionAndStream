@@ -10,6 +10,8 @@ public class AddressBookMain
 	static Scanner sc=new Scanner(System.in);
 	static ArrayList<Contact> contactArrayList;
 	private Map<String,Contact> nameToContactMap;
+	public Map<String, List<Contact>> cityToContactMap;
+	public Map<String, List<Contact>> stateToContactMap;
 	public AddressBookMain()
 	{
 		contactArrayList=new ArrayList<>();
@@ -18,7 +20,10 @@ public class AddressBookMain
 	public List<Contact> getcontactArray() {
 		return contactArrayList;
 	}
-	
+	public Map<String,Contact> getcontactMap()
+	{
+		return nameToContactMap;
+	}
 	public void addNewContact()
 	{
 		String firstName="";
@@ -102,6 +107,7 @@ public class AddressBookMain
 		else
 			return false;
 	}
+
 	public void maintainAddressBook()
 	{	
 		boolean check=true;

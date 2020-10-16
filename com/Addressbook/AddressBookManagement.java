@@ -5,6 +5,8 @@ public class AddressBookManagement
 {
 	static Scanner sc=new Scanner(System.in);
 	public static Map<String,AddressBookMain> nameToAddressBookMap=new TreeMap<>();
+	public static Map<String, Contact> cityToContactEntryMap = new TreeMap<>();
+	public static Map<String, Contact> stateToContactEntryMap = new TreeMap<>();
 	public static void addNewAddressBook()
 	{
 		AddressBookMain object=new AddressBookMain();
@@ -13,10 +15,6 @@ public class AddressBookManagement
 		object.maintainAddressBook();
 		nameToAddressBookMap.put(name,object);
 	}
-	public enum SearchBy {
-		CITY, STATE
-	}
-	/*UC8 search person by city/state in all address books*/
 	public static void searchPersonInBook(String search)
 	{
 		int numberOfPerson=0;
@@ -41,12 +39,41 @@ public class AddressBookManagement
 	public static void main(String args[])
 	{
 		AddressBookManagement aBookManager=new AddressBookManagement();
-		System.out.println("Enter 1 to add a new BOOK");
-		int choice=sc.nextInt();
-		if(choice==1)
-			aBookManager.addNewAddressBook();
-		else
-			System.out.println("Invalid choice");
-		System.out.println(aBookManager.nameToAddressBookMap);
+		while(true)
+		{
+			System.out.println("\n1. Add a new Address Book");
+			System.out.println("\n2. Search person across all address books");
+			System.out.println("\n3. Exit");
+			System.out.println("\n Please Enter your choice");
+			int choice=sc.nextInt();
+			switch(choice)
+			{
+			case 1:
+			while (true) {
+				AddressBookMain m = new AddressBookMain();
+				System.out.println("Enter A name for address Book");
+				String name = sc.next();
+				if (aBookManager.nameToAddressBookMap.containsKey(name)) {
+					System.out.println("\nAddress Book already exists !!!\n");
+					continue;
+				} else {
+					aBookManager.nameToAddressBookMap.put(name, m);
+					System.out.println("\n In Address Book : " + name);
+					m.maintainAddressBook();
+					break;
+				}
+			}
+			break;
+
+		case 2:
+			System.out.println("Enter city or state to search a person");
+			String searchIn = sc.next();
+			aBookManager.searchPersonInBook(searchIn);
+			break;
+
+		case 3:
+			break;
+			}
 	}
+}
 }
