@@ -2,18 +2,23 @@ package com.Addressbook;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 public class AddressBookMain 
 {
 	static Scanner sc=new Scanner(System.in);
-	private ArrayList<Contact> contactArrayList;
+	static ArrayList<Contact> contactArrayList;
 	private Map<String,Contact> nameToContactMap;
 	public AddressBookMain()
 	{
 		contactArrayList=new ArrayList<>();
 		this.nameToContactMap = new LinkedHashMap<String, Contact>();
 	}
+	public List<Contact> getcontactArray() {
+		return contactArrayList;
+	}
+	
 	public void addNewContact()
 	{
 		String firstName="";
@@ -82,6 +87,7 @@ public class AddressBookMain
 			Contact object=nameToContactMap.get(name);
 			contactArrayList.remove(object);
 			nameToContactMap.remove(name);
+			System.out.println("Contact deleted");
 		
 	}
 	/*UC7*/

@@ -13,6 +13,31 @@ public class AddressBookManagement
 		object.maintainAddressBook();
 		nameToAddressBookMap.put(name,object);
 	}
+	public enum SearchBy {
+		CITY, STATE
+	}
+	/*UC8 search person by city/state in all address books*/
+	public static void searchPersonInBook(String search)
+	{
+		int numberOfPerson=0;
+		Iterator contactArray=nameToAddressBookMap.entrySet().iterator();
+		while(contactArray.hasNext())
+		{
+			Map.Entry entry=(Map.Entry) contactArray.next();
+			AddressBookMain a=(AddressBookMain)entry.getValue();
+			List<Contact> list=a.getcontactArray();
+			for(Contact con:list)
+			{
+				if(con.getCity().equals(search)||con.getState().equals(search))
+				{
+					System.out.println(con);
+					numberOfPerson++;
+				}
+			}
+			if(numberOfPerson==0)
+				System.out.println("No person was found");
+		}
+	}
 	public static void main(String args[])
 	{
 		AddressBookManagement aBookManager=new AddressBookManagement();
