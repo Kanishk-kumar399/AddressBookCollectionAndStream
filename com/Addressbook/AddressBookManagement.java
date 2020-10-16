@@ -22,5 +22,6 @@ public class AddressBookManagement
 			aBookManager.addNewAddressBook();
 		else
 			System.out.println("Invalid choice");
+		System.out.println(aBookManager.nameToAddressBookMap);
 	}
 }
