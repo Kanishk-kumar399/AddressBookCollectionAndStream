@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 public class AddressBookManagement 
 {
 	static Scanner sc=new Scanner(System.in);
@@ -34,26 +36,13 @@ public class AddressBookManagement
 			searchPersonInBook(state);
 		}
 	}
-	public static void searchPersonInBook(String search)
+	public static void searchPersonInBook(String searchIn)
 	{
-		int numberOfPerson=0;
-		Iterator contactArray=nameToAddressBookMap.entrySet().iterator();
-		while(contactArray.hasNext())
-		{
-			Map.Entry entry=(Map.Entry) contactArray.next();
-			AddressBookMain a=(AddressBookMain)entry.getValue();
-			List<Contact> list=a.getcontactArray();
-			for(Contact con:list)
-			{
-				if(con.getCity().equals(search)||con.getState().equals(search))
-				{
-					System.out.println(con);
-					numberOfPerson++;
-				}
-			}
-			if(numberOfPerson==0)
-				System.out.println("No person was found");
-		}
+		Predicate<Contact> search = n -> n.getFirstName().equals(searchIn) ? true : false;
+		Consumer<Contact> display = n -> System.out.println(n);
+		nameToAddressBookMap.forEach((k, v) -> {
+			v.getcontactArray().stream().filter(search).forEach(display);
+		});
 	}
 	public static void countByCity() {
 		Set<String> listOfCity = cityToContactEntryMap.keySet();

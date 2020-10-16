@@ -1,9 +1,11 @@
 package com.Addressbook;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 public class AddressBookMain 
 {
 	static Scanner sc=new Scanner(System.in);
@@ -106,7 +108,14 @@ public class AddressBookMain
 		else
 			return false;
 	}
-
+	/*UC11*/
+	public void sortByName()
+	{
+	List<Contact> sortedList = contactArrayList.stream()
+	.sorted(Comparator.comparing(Contact::getFirstName))
+	.collect(Collectors.toList());
+	sortedList.forEach(System.out::println);
+	}
 	public void maintainAddressBook()
 	{	
 		boolean check=true;
@@ -116,7 +125,8 @@ public class AddressBookMain
 			System.out.println("\n2. Edit Contact Details");
 			System.out.println("\n3. Delete Contact Details");
 			System.out.println("\n4. Show Contact details");
-			System.out.println("\n5. Exit");
+			System.out.println("\n5. Sort details by name");
+			System.out.println("\n6. Exit");
 			System.out.println("\nEnter your choice");
 			int choice=sc.nextInt();
 			switch(choice)
@@ -135,7 +145,8 @@ public class AddressBookMain
 			break;
 			case 4:printContacts();
 			break;
-			case 5:System.out.println("Exit");
+			case 5:sortByName();
+			case 6:System.out.println("Exit");
 				   check=false;
 			break;
 			}
