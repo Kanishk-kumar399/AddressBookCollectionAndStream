@@ -116,6 +116,27 @@ public class AddressBookMain
 	.collect(Collectors.toList());
 	sortedList.forEach(System.out::println);
 	}
+	/*UC12*/
+	public void sortByCity()
+	{
+	List<Contact> sortedList = contactArrayList.stream()
+	.sorted(Comparator.comparing(Contact::getCity))
+	.collect(Collectors.toList());
+	sortedList.forEach(System.out::println);
+	}
+	public void sortByState()
+	{
+	List<Contact> sortedList = contactArrayList.stream()
+	.sorted(Comparator.comparing(Contact::getState))
+	.collect(Collectors.toList());
+	sortedList.forEach(System.out::println);
+	}
+	public void sortByZip()
+	{
+	List<Contact> sortedList = contactArrayList.stream()
+	.sorted(Comparator.comparingInt(Contact::getPinCode))
+	.collect(Collectors.toList());
+	}
 	public void maintainAddressBook()
 	{	
 		boolean check=true;
@@ -146,7 +167,12 @@ public class AddressBookMain
 			case 4:printContacts();
 			break;
 			case 5:sortByName();
-			case 6:System.out.println("Exit");
+			break;
+			case 6:sortByState();
+			break;
+			case 7:sortByZip();
+			break;
+			case 8:System.out.println("Exit");
 				   check=false;
 			break;
 			}
