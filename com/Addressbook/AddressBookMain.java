@@ -1,17 +1,48 @@
 package com.Addressbook;
-
+import java.util.*;
 public class AddressBookMain 
 {
-	private String firstName;
-    private String lastName;
-    private String address;
-    private String state;
-    private String city;
-    private int pinCode;
-    private long phoneNumber;
-    private String emailId;
+	int numOfContact=0;
+	private Contact[] contactArray;
+	
+	public AddressBookMain()
+	{
+		contactArray=new Contact[5];
+	}
+	private void addNewContact(String firstName,String lastName,String address,String city,String state,int pinCode,long mobiileNumber,String emailId)
+	{
+		contactArray[numOfContact]=new Contact(firstName,lastName,address,city,state,pinCode,mobiileNumber,emailId);
+		System.out.println(contactArray[numOfContact]);
+		numOfContact++;
+	}
+	public static void main(String args[])
+	{
+	Scanner sc=new Scanner(System.in);	
+	System.out.print("Enter FirstName,Last Name,address,city,state,pincode,phonenumber,email");
+	String fname=sc.next();
+	String lname=sc.next();
+	String addressNew=sc.next();
+	String cityNew=sc.next();
+	String stateNew=sc.next();
+	int zip=sc.nextInt();
+	long mobiileNumber=sc.nextLong();
+	String email=sc.next();
+	AddressBookMain Contact1=new AddressBookMain();
+	Contact1.addNewContact(fname,lname,addressNew,cityNew,stateNew,zip,mobiileNumber,email);
+	}
+}
+class Contact
+{
+	public String firstName;
+    public String lastName;
+    public String address;
+    public String state;
+    public String city;
+    public int pinCode;
+    public long phoneNumber;
+    public String emailId;
 
-    public AddressBookMain(String firstName,String lastName,String address,String city,String state,int pinCode,long phoneNumber,String emailId)
+    public Contact(String firstName,String lastName,String address,String city,String state,int pinCode,long mobileNumber,String emailId)
     {
      this.firstName=firstName;
      this.lastName=lastName;
@@ -19,17 +50,60 @@ public class AddressBookMain
      this.city=city;
      this.state=state;
      this.pinCode=pinCode;
-     this.phoneNumber=phoneNumber;
+     this.phoneNumber=mobileNumber;
      this.emailId=emailId;
     }
     @Override
     public String toString()
     {
-    		return "First Name: "+firstName+" \nLast Name: "+lastName+"\nAddress :"+address+"\nCity: "+city+"\nPincode: "+pinCode+"\nState: "+state+"\nPhoneNumber: "+phoneNumber+"\nEmail ID: "+emailId;
+    return "First Name: "+firstName+" \nLast Name: "+lastName+"\nAddress :"+address+"\nCity: "+city+"\nPincode: "+pinCode+"\nState: "+state+"\nPhoneNumber: "+phoneNumber+"\nEmail ID: "+emailId;
     }
-    public static void main(String args[])
-    {
-    	AddressBookMain Contact1=new AddressBookMain("Kumar","Kanishk","SH-3/40","Varanasi","UP",2210,884024123,"kanishk@gmail.com");
-    	System.out.println(Contact1);
-    }
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public int getPinCode() {
+		return pinCode;
+	}
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
+	}
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 }
