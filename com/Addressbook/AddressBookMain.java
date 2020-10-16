@@ -47,9 +47,22 @@ public class AddressBookMain
 			}
 		}
 	}
+	public void deleteContactDetails(String firstName, String lastName) {
+		for(int i = 0; i < numOfContact; i++) {
+			if(contactArray[i].firstName.equals(firstName) && contactArray[i].lastName.equals(lastName)) {
+				contactArray[i] = null;
+				System.out.println("Contact deleted");
+				break;
+			}
+		} 
+	}
 	public static void main(String args[])
+	{	
+	AddressBookMain addressBookContacts = new AddressBookMain();
+	System.out.println("Enter number of contact details to enter:");
+	int numOfContact = sc.nextInt();
+	for(int i=0;i<numOfContact;i++)
 	{
-	Scanner sc=new Scanner(System.in);	
 	System.out.print("Enter FirstName,Last Name,address,city,state,pincode,phonenumber,email");
 	String fname=sc.next();
 	String lname=sc.next();
@@ -59,8 +72,12 @@ public class AddressBookMain
 	int zip=sc.nextInt();
 	long mobiileNumber=sc.nextLong();
 	String email=sc.next();
-	AddressBookMain Contact1=new AddressBookMain();
-	Contact1.addNewContact(fname,lname,addressNew,cityNew,stateNew,zip,mobiileNumber,email);
-	Contact1.editContact();
+	addressBookContacts.addNewContact(fname,lname,addressNew,cityNew,stateNew,zip,mobiileNumber,email);
+	}
+	addressBookContacts.editContact();
+	System.out.println("Enter first name and last name of contact to be deleted: ");
+	String firstname = sc.next();
+	String lastname=sc.next();
+	addressBookContacts.deleteContactDetails(firstname, lastname);	
 	}
 }
