@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class AddressBookMain 
 {
 	static Scanner sc=new Scanner(System.in);
+	AddressBookCollectionIOService addressBookCollectionIOService=new AddressBookCollectionIOService();
 	static ArrayList<Contact> contactArrayList;
 	private Map<String,Contact> nameToContactMap;
 	public Map<String, List<Contact>> cityToContactMap;
